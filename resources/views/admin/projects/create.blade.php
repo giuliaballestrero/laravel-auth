@@ -7,6 +7,19 @@
         Create a new post from <span class="fw-semibold">{{ Auth::user()->name }} </span>
     </h5>
 
+     <!--aggiungo un div per mostrare l'errore tramite foreach e endif per visualizzarlo dopo-->
+     @if ($errors->any())
+     <div class="alert alert-danger">
+         <ul>
+             @foreach ($errors->all() as $error)
+                 <li>
+                     {{$error}}
+                 </li>
+             @endforeach
+         </ul>
+     </div>
+    @endif
+
     <form action="{{ route('admin.projects.store') }}" method="POST" class="py-5">
         @csrf
         @method('POST')
