@@ -2,6 +2,13 @@
 
 @section('content')
 <div class="container">
+    <!--Aggiungo un if session per i messaggi di conferma azioni-->
+    @if (session('message'))
+        <div class=" mt-5 alert alert-{{ session('alert-type') }}">
+            {{ session('message')}}
+        </div>
+    @endif
+    
     <table class="table table-striped table-borderless table-hover mt-5">
         <thead>
             <tr>
@@ -14,7 +21,7 @@
                 <th scope="col">Type</th>
                 <th scope="col">Completed</th>
                 <th scope="col">
-                    <a href="" class="btn btn-success">
+                    <a href="{{route('admin.projects.create')}}" class="btn btn-success">
                         Add new Project
                     </a>
                 </th>
