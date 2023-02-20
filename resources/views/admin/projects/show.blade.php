@@ -1,0 +1,34 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container py-5">
+    <div class="card text-center">
+        <div class="card-header bg-dark text-light">
+            Name id: {{ $project->slug }}
+        </div>
+        <div class="card-body p-3 m-3">
+            <h2 class="card-title fw-bold p-3">
+                {{ $project->title }}
+            </h2>
+            <img src="http:/{{$project->thumb}}" class="card-img-top" alt="{{$project->title}}">
+            <p class="card-text mb-4">
+                {{ $project->description }}
+            </p>
+            <p class="fw-bold">
+                Tag: {{$project->type}}
+            </p>
+            <a href="#" class="btn btn-success">
+                Edit
+            </a>
+
+            {{-- inserire il bottone in un form --}}
+            <a href="#" class="btn btn-danger">
+                Delete this Project
+            </a>
+        </div>
+        <div class="card-footer text-muted">
+            Created on {{ $project->creation_date }}
+        </div>
+      </div>
+</div>
+@endsection
