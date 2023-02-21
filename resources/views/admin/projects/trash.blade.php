@@ -48,9 +48,9 @@
                     </td>
                 </tr>
             @empty
-                <h3>
+                <h5 class="py-5 text-center text-secondary">
                     No projects to show.
-                </h3>
+                </h5>
             @endforelse
         </tbody>
     </table>

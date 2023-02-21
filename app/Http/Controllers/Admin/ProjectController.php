@@ -152,6 +152,6 @@ class ProjectController extends Controller
     public function forceDelete($id)
     {
         Project::where('id', $id)->withTrashed()->forceDelete();
-        return redirect()->route('admin.projects.trash')->with('message', "Project has been permamently deleted")->with('alert-type', 'success');
+        return redirect()->route('admin.projects.index')->with('message', "Project has been permamently deleted")->with('alert-type', 'success');
     }
 }
