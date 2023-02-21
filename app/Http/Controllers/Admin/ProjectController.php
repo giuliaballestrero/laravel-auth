@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class ProjectController extends Controller
 {
@@ -90,24 +91,33 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  Project $project
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project) //Uso la dependency injection al posto di passare l'id e fare find or fail
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  Project $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Project $project)
     {
-        //
+        //richiamare la validation con i metodi creati
+         
+        $newRules = $this->rules;
+        $newRules['title'] = ['required', 'min:2', 'max:200', Rule::unique('projects')->ignore($project->id)];
+        
+        $data = $request->validate($newRules, $this->messages);
+        $project->update($data);
+
+        //ritorno sulla pagina dello show
+        return redirect()->route('admin.projects.show', compact('project'))->with('message', "$project->title has been edited")->with('alert-type', 'success');
     }
 
     /**

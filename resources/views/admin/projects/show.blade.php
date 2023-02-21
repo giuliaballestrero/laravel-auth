@@ -2,6 +2,13 @@
 
 @section('content')
 <div class="container py-5">
+    <!--Aggiungo un if session per i messaggi di conferma azioni-->
+    @if (session('message'))
+        <div class=" mt-5 alert alert-{{ session('alert-type') }}">
+                {{ session('message')}}
+        </div>
+    @endif
+
     <div class="card text-center">
         <div class="card-header bg-dark text-light">
             Name id: {{ $project->slug }}
@@ -17,7 +24,7 @@
             <p class="fw-bold">
                 Tag: {{$project->type}}
             </p>
-            <a href="#" class="btn btn-success">
+            <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-success">
                 Edit
             </a>
 
