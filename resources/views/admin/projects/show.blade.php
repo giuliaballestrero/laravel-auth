@@ -11,7 +11,7 @@
 
     <div class="card text-center">
         <div class="card-header bg-dark text-light">
-            Name id: {{ $project->slug }}
+            Author: <span class="fw-bold">{{ Auth::user()->name }} </span>
         </div>
         <div class="card-body p-3 m-3">
             <h2 class="card-title fw-bold p-3">
@@ -34,7 +34,7 @@
             </a>
         </div>
         <div class="card-footer text-muted">
-            Created on {{ $project->creation_date }}
+            Created on {{ $project->creation_date }} - Proj. id: {{ $project->slug }}
         </div>
       </div>
 </div>

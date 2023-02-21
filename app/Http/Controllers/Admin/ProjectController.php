@@ -106,7 +106,7 @@ class ProjectController extends Controller
      * @param  int  Project $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, Project $project) //Uso la dependency injection
     {
         //richiamare la validation con i metodi creati
          
@@ -123,11 +123,35 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  Project $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project) //Uso la dependency injection
     {
-        //
+        $project->delete();
+        return redirect()->route('admin.projects.index')->with('message', "$project->title has been trashed")->with('alert-type', 'danger');
+
+    }
+
+    //Preparo un metodo per la restore degli elementi cestinati
+    public function restore($id)
+    {
+        Project::where('id', $id)->withTrashed()->restore();
+        return redirect()->route('admin.projects.index')->with('message', "Project has been restored")->with('alert-type', 'success');
+    }
+
+    //Preparo un metodo per la sezione cestino - soft delete
+    public function trashed()
+    {
+        //$projects = Project::paginate(10);
+        $projects = Project::onlyTrashed()->get();
+        return view('admin.projects.trash', compact('projects'));
+    }
+
+    //preparo un metodo per eliminare definitivamente il progetto
+    public function forceDelete($id)
+    {
+        Project::where('id', $id)->withTrashed()->forceDelete();
+        return redirect()->route('admin.projects.trash')->with('message', "Project has been permamently deleted")->with('alert-type', 'success');
     }
 }

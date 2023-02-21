@@ -3,9 +3,6 @@
 
 @section('content')
 <div class="container">
-    <h5 class="mb-3 pt-5">
-        Create a new post from <span class="fw-semibold">{{ Auth::user()->name }} </span>
-    </h5>
 
      <!--aggiungo un div per mostrare l'errore tramite foreach e endif per visualizzarlo dopo-->
      @if ($errors->any())

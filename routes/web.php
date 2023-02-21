@@ -30,6 +30,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::name('projects.')->prefix('projects')->group(function () {
+    Route::get('/trash', [ProjectController::class, 'trashed'])->name('trash');
+    Route::post('/{project}/restore', [ProjectController::class, 'restore'])->name('restore');
+    Route::delete('/{project}/force-delete', [ProjectController::class, 'forceDelete'])->name('force-delete');
+});
+
 Route::middleware(['auth', 'verified'])
     ->name('admin.')
     ->prefix('admin')

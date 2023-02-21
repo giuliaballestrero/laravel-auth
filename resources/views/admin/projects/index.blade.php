@@ -8,7 +8,17 @@
             {{ session('message')}}
         </div>
     @endif
+
+    <h1 class="pt-5 text-center">{{ Auth::user()->name }} Projects</h1>
     
+    <div class="pt-5  d-flex justify-content-between">
+        <a  class="btn btn-sm btn-danger" href="{{route('projects.trash')}}"> 
+            Deleted <i class="fa-solid fa-trash"></i>
+        </a>
+        <a href="{{route('admin.projects.create')}}" class="btn btn-success">
+            Add new Project
+        </a>
+    </div>
     <table class="table table-striped table-borderless table-hover mt-5">
         <thead>
             <tr>
@@ -17,14 +27,10 @@
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
                 <th scope="col">Thumb</th>
-                <th scope="col">Creation Date</th>
+                <th scope="col">Date</th>
                 <th scope="col">Type</th>
                 <th scope="col">Completed</th>
-                <th scope="col">
-                    <a href="{{route('admin.projects.create')}}" class="btn btn-success">
-                        Add new Project
-                    </a>
-                </th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -48,15 +54,23 @@
                     </a>
                     
                     {{-- per la delete inserire il bottone in un form --}}
-                    <a href="" class="btn btn-sm btn-danger">
-                        Delete
-                    </a>
+
+                    <form class="" action="{{route('admin.projects.destroy', $project->id)}}" method="POST" >
+                        @csrf
+                        {{-- utilizzo il metodo delete --}}
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger" title="delete"><i class="fa-solid fa-trash"></i></button>
+                    </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    {{-- inserisco la pagination --}}
-    {{ $projects->links() }}
+
+   {{-- inserisco la pagination --}}
+    <div class="py-5">
+        {{ $projects->links() }}
+    </div>
+ 
 </div>
 @endsection
