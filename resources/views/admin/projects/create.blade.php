@@ -45,7 +45,7 @@
 
             <div class="form-outline w-25 mb-3">
                 <label for="creation_date" class="form-label">Creation Date</label>
-                <input type="text" class="form-control" id="creation_date" placeholder="Insert creation date" name="creation_date" value="{{old('creation_date')}}">
+                <input type="date" class="form-control" id="creation_date" placeholder="Insert creation date" name="creation_date" value="{{old('creation_date')}}">
             </div>
 
             <div class="form-outline w-25 mb-3">
