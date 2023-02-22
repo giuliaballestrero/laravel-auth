@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
         <div class="col">
             <div class="card">
-                <div class="card-header bg-dark text-light text-center">
+                <div class="card-header text-light fw-bold fs-5 text-center">
                     {{ __('User Dashboard') }}
                 </div>
 

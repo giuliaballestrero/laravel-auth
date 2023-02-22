@@ -86,7 +86,10 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('admin.projects.show', compact('project'));
+        //creo due metodi per andare avanti e indietro nei progetti in ordine di data
+        $nextProject = Project::where('creation_date', '>', $project->creation_date)->orderBy('creation_date')->first();
+        $prevProject = Project::where('creation_date', '<', $project->creation_date)->orderBy('creation_date', 'DESC')->first();
+        return view('admin.projects.show', compact('project', 'nextProject', 'prevProject'));
     }
 
     /**
@@ -97,6 +100,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project) //Uso la dependency injection al posto di passare l'id e fare find or fail
     {
+
         return view('admin.projects.edit', compact('project'));
     }
 
