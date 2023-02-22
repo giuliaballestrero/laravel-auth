@@ -2,3 +2,36 @@
 
 //Importo FontAwesome
 @import "@fortawesome/fontawesome-free/css/all.css";
+
+body {
+    font-family: 'Urbanist', sans-serif;
+}
+
+header {
+    nav {
+        background-color: #aba9ee;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        color: #e5e7ff;
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+}
+
+main {
+    background-color: #e5e7ff;
+
+    div .card {
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
+        h2 {
+            border-bottom: 1px solid #aba9ee;
+        }
+    }
+
+    table {
+        background-color: #aba9ee61;
+        border-radius: 20px;
+    }
+}
+

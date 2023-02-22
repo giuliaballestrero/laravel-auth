@@ -13,7 +13,7 @@
 
         <h1 class="pt-5 text-center">{{ Auth::user()->name }} Projects</h1>
 
-        <div class="pt-5 d-flex justify-content-between">
+        <div class="pt-3 d-flex justify-content-between">
             <a class="btn btn-sm btn-danger rounded-pill p-3" href="{{ route('projects.trash') }}">
                 Deleted <i class="fa-solid fa-trash ps-1"></i>
             </a>
@@ -48,11 +48,13 @@
                         <td>{{ $project->completed }}</td>
                         <td>
                             <div class="d-flex">
-                                <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-sm btn-primary rounded-circle me-1">
+                                <a href="{{ route('admin.projects.show', $project->slug) }}"
+                                    class="btn btn-sm btn-primary rounded-circle me-1">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
 
-                                <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-sm btn-warning rounded-circle me-1">
+                                <a href="{{ route('admin.projects.edit', $project->slug) }}"
+                                    class="btn btn-sm btn-warning rounded-circle me-1">
                                     <i class="fa-solid fa-pencil"></i>
                                 </a>
 
@@ -63,7 +65,8 @@
                                     @csrf
                                     {{-- utilizzo il metodo delete --}}
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger delete rounded-circle" title="delete">
+                                    <button type="submit" class="btn btn-sm btn-danger delete rounded-circle"
+                                        title="delete">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
