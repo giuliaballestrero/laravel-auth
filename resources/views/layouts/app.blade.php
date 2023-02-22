@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Usando Vite -->
-    @vite(['resources/js/app.js'])
+    @vite('resources/js/app.js')
 
         <!-- Style and Js -->
         <link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
@@ -25,8 +25,6 @@
 
 <body>
     <div id="app">
-
-
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 
@@ -87,6 +85,8 @@
             @yield('content')
         </main>
     </div>
+    
+    @yield('script')
 </body>
 
 </html>
