@@ -48,17 +48,17 @@
                         <td>{{ $project->completed }}</td>
                         <td>
                             <div class="d-flex">
-                                <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-sm btn-primary rounded-circle me-1">
+                                <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-sm btn-primary rounded-circle me-1">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
 
-                                <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-sm btn-warning rounded-circle me-1">
+                                <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-sm btn-warning rounded-circle me-1">
                                     <i class="fa-solid fa-pencil"></i>
                                 </a>
 
                                 {{-- per la delete inserire il bottone in un form --}}
 
-                                <form class="delete" action="{{ route('admin.projects.destroy', $project->id) }}"
+                                <form class="delete" action="{{ route('admin.projects.destroy', $project->slug) }}"
                                     method="POST">
                                     @csrf
                                     {{-- utilizzo il metodo delete --}}

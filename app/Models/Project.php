@@ -16,4 +16,12 @@ class Project extends Model
 
     //uso la soft deletes
     use SoftDeletes;
+
+    //uso una funzione per visualizzare lo slug nella rotta al posto dell'id
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
 }
+

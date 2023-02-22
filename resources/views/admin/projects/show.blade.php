@@ -24,23 +24,25 @@
             <p class="fw-bold">
                 Tag: {{$project->type}}
             </p>
-            <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-success">
-                Edit
-            </a>
+            <div class="d-flex justify-content-center">
+                <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-success rounded-circle me-2">
+                    <i class="fa-solid fa-pencil"></i>
+                </a>
 
-            {{-- inserire il bottone in un form --}}
-            <form class="delete" action="{{ route('admin.projects.destroy', $project->id) }}"
-                method="POST">
-                @csrf
-                {{-- utilizzo il metodo delete --}}
-                @method('DELETE')
-                <button type="submit" class="btn btn-sm btn-danger delete" title="delete"><i
-                        class="fa-solid fa-trash"></i></button>
-            </form>
+                {{-- inserire il bottone in un form --}}
+                <form class="delete" action="{{ route('admin.projects.destroy', $project->slug) }}"
+                    method="POST">
+                    @csrf
+                    {{-- utilizzo il metodo delete --}}
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger delete rounded-circle" title="delete">
+                    <i class="fa-solid fa-trash"></i></button>
+                </form>
+            </div>
         </div>
         <div class="card-footer text-muted">
             Created on {{ $project->creation_date }} - Proj. id: {{ $project->slug }}
         </div>
-      </div>
+    </div>
 </div>
 @endsection

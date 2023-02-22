@@ -34,7 +34,7 @@
                             </button>
                         </form>       
 
-                        <form class="delete double-confirm" action="{{route('projects.force-delete', $project->id)}}" method="POST">
+                        <form class="delete double-confirm" action="{{route('projects.force-delete', $project->slug)}}" method="POST">
                             @csrf
                             {{--utilizzo il medodo delete per eliminare definitivamente il progetto--}}
                             @method('DELETE')
