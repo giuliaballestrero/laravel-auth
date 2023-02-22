@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container vh-100 pt-5">
+<div class="container pt-5">
     <h3 class="fs-4 text-secondary pb-5">
         {{ __('Dashboard') }}
     </h3>

@@ -3,7 +3,7 @@
 @section('content')
 @include('admin.partials.popup')
 
-<div class="container py-5 vh-100">
+<div class="container py-5">
 
     <h1 class="text-center">Trashed Projects</h1>
     

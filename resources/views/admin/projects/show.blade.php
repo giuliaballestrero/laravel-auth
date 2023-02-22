@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-5 vh-100">
+<div class="container py-5">
     <!--Aggiungo un if session per i messaggi di conferma azioni-->
     @if (session('message'))
         <div class=" mt-5 alert alert-{{ session('alert-type') }}">

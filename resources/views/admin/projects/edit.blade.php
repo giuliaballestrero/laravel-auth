@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-5 vh-100">
+<div class="container py-5">
 
      <!--aggiungo un div per mostrare l'errore tramite foreach e endif per visualizzarlo dopo-->
      @if ($errors->any())
