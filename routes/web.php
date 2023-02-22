@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController as DashboardController;
-use App\Http\Controllers\Admin\ProjectController as ProjectController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
+use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [GuestProjectController::class, 'index'])->name('guest.index');
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
@@ -31,18 +30,18 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::name('projects.')->prefix('projects')->group(function () {
-    Route::get('/trash', [ProjectController::class, 'trashed'])->name('trash');
-    Route::post('/{project}/restore', [ProjectController::class, 'restore'])->name('restore');
-    Route::delete('/{project}/force-delete', [ProjectController::class, 'forceDelete'])->name('force-delete');
+    Route::get('/trash', [AdminProjectController::class, 'trashed'])->name('trash');
+    Route::post('/{project}/restore', [AdminProjectController::class, 'restore'])->name('restore');
+    Route::delete('/{project}/force-delete', [AdminProjectController::class, 'forceDelete'])->name('force-delete');
 });
 
 Route::middleware(['auth', 'verified'])
     ->name('admin.')
     ->prefix('admin')
     ->group(function() {
-        Route::get('/', [DashboardController::class, 'index'])
+        Route::get('/', [AdminDashboardController::class, 'index'])
         ->name('dashboard');
-        Route::resource('projects', ProjectController::class);
+        Route::resource('projects', AdminProjectController::class);
     });
 
 
