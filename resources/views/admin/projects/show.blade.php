@@ -10,7 +10,7 @@
     @endif
 
     <div class="card text-center">
-        <div class="card-header bg-dark text-light">
+        <div class="card-header text-light">
             Author: <span class="fw-bold">{{ Auth::user()->name }} </span>
         </div>
         <div class="card-body p-3 m-3">

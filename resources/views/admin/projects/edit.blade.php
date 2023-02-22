@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container py-5 vh-100">
 
      <!--aggiungo un div per mostrare l'errore tramite foreach e endif per visualizzarlo dopo-->
      @if ($errors->any())
@@ -58,8 +58,8 @@
         </div>
 
         <div class="card-footer text-end py-4 d-flex justify-content-between">
-            <a href="{{ route('admin.projects.index')}}" class="btn btn-dark"><i class="fa-solid fa-angles-left"></i> Go Back</a>
-            <button type="submit" class="btn btn-success"><i class="fa-solid fa-square-plus"></i> Edit</button>
+            <a href="{{ route('admin.projects.index')}}" class="btn btn-dark rounded-circle"><i class="fa-solid fa-angles-left"></i></a>
+            <button type="submit" class="btn btn-success rounded-circle"><i class="fa-solid fa-pencil"></i></i></button>
         </div>
 
     </form>
