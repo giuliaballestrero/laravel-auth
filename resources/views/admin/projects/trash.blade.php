@@ -1,13 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+@include('admin.partials.popup')
+
 <div class="container py-5">
-    <!--Aggiungo un if session per i messaggi di conferma azioni-->
-    @if (session('message'))
-        <div class=" mt-5 alert alert-{{ session('alert-type') }}">
-                {{ session('message')}}
-        </div>
-    @endif
 
     <h1>Trashed Projects</h1>
     
@@ -38,7 +34,7 @@
                             </button>
                         </form>       
 
-                        <form action="{{route('projects.force-delete', $project->id)}}" method="POST">
+                        <form class="delete double-confirm" action="{{route('projects.force-delete', $project->id)}}" method="POST">
                             @csrf
                             {{--utilizzo il medodo delete per eliminare definitivamente il progetto--}}
                             @method('DELETE')

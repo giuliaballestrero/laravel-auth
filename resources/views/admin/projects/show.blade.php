@@ -29,9 +29,14 @@
             </a>
 
             {{-- inserire il bottone in un form --}}
-            <a href="#" class="btn btn-danger">
-                Delete this Project
-            </a>
+            <form class="delete" action="{{ route('admin.projects.destroy', $project->id) }}"
+                method="POST">
+                @csrf
+                {{-- utilizzo il metodo delete --}}
+                @method('DELETE')
+                <button type="submit" class="btn btn-sm btn-danger delete" title="delete"><i
+                        class="fa-solid fa-trash"></i></button>
+            </form>
         </div>
         <div class="card-footer text-muted">
             Created on {{ $project->creation_date }} - Proj. id: {{ $project->slug }}
