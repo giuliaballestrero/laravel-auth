@@ -11,12 +11,12 @@
 
     <h1 class="pt-5 text-center">{{ Auth::user()->name }} Projects</h1>
     
-    <div class="pt-5  d-flex justify-content-between">
-        <a  class="btn btn-sm btn-danger" href="{{route('projects.trash')}}"> 
-            Deleted <i class="fa-solid fa-trash"></i>
+    <div class="pt-5 d-flex justify-content-between">
+        <a  class="btn btn-sm btn-danger rounded-pill p-3" href="{{route('projects.trash')}}"> 
+            Deleted <i class="fa-solid fa-trash ps-1"></i>
         </a>
-        <a href="{{route('admin.projects.create')}}" class="btn btn-success">
-            Add new Project
+        <a href="{{route('admin.projects.create')}}" class="btn btn-sm btn-success rounded-pill p-3">
+            New Project <i class="fa-solid fa-plus ps-1"></i>
         </a>
     </div>
     <table class="table table-striped table-borderless table-hover mt-5">

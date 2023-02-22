@@ -19,7 +19,7 @@ class ProjectController extends Controller
         'description' => 'required|min:8|max:200',
         'thumb' => 'required',
         'creation_date' => 'required|date',
-        'type' => 'max:50',
+        'type' => 'min:2|max:50',
     ];
 
     protected $messages = [
@@ -37,6 +37,7 @@ class ProjectController extends Controller
         'creation_date.required' => 'Data creazione progetto non inserita',
         'creation_date.date' => 'La data di creazione deve essere un numero',
 
+        'type.min' => 'Inserire almeno 2 caratteri',
         'type.max' => 'Superati i 50 caratteri masssimi consentiti per il tipo',
 
     ];

@@ -19,6 +19,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
                 <th scope="col">Creation Date</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -27,13 +28,13 @@
                     <td>{{ $project->id }}</td>
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->description }}</td>
-                    <td>{{ $project->creation_date }}</td>
-                    <td>
+                    <td class="text-center">{{ $project->creation_date }}</td>
+                    <td class="d-flex">
 
                         <form action="{{route('projects.restore', $project->id)}}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-sm btn-success" title="restore">
-                                Restore Project
+                            <button type="submit" class="btn btn-sm btn-success me-2 rounded-circle" title="restore">
+                                <i class="fa-solid fa-recycle"></i>
                             </button>
                         </form>       
 
@@ -41,8 +42,8 @@
                             @csrf
                             {{--utilizzo il medodo delete per eliminare definitivamente il progetto--}}
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger" title="delete">
-                                Permanently Delete
+                            <button type="submit" class="btn btn-sm btn-danger rounded-circle" title="delete">
+                                <i class="fa-solid fa-trash"></i>
                             </button>
                         </form>
                     </td>
