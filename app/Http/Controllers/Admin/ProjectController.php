@@ -76,6 +76,14 @@ class ProjectController extends Controller
         //inserisco la funzione storage per caricare il file nella cartella storage/app/public
         $data['thumb'] = Storage::put('img/', $data['thumb']);
 
+        //controllo i valori della checkbox
+        if (!isset($request->completed)){
+            $data['completed'] = false;
+        }          
+            else {
+                $data['completed'] = true;
+            }   
+
         $newProject = new Project();
         $newProject->fill($data);
         $newProject->save();
