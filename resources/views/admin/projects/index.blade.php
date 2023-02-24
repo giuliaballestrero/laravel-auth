@@ -45,7 +45,13 @@
                         <td>{{ $project->thumb }}</td>
                         <td>{{ $project->creation_date }}</td>
                         <td>{{ $project->type }}</td>
-                        <td>{{ $project->completed }}</td>
+                        <td class="text-center">
+                            @if ($project->completed == 0)
+                                <i class="fa-solid fa-spinner"></i>
+                            @elseif ($project->completed == 1)
+                                <i class="fa-regular fa-circle-check"></i>
+                            @endif
+                        </td>
                         <td>
                             <div class="d-flex">
                                 <a href="{{ route('admin.projects.show', $project->slug) }}"

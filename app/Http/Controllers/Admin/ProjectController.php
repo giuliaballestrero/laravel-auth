@@ -20,7 +20,7 @@ class ProjectController extends Controller
         'description' => 'required|min:8|max:200',
         'thumb' => 'required',
         'creation_date' => 'required|date',
-        'type' => 'min:2|max:50',
+        'type' => 'min:2|max:50'
     ];
 
     protected $messages = [
@@ -72,6 +72,7 @@ class ProjectController extends Controller
         //$data = $request->all();
         $data = $request->validate($this->rules, $this->messages);
         $data['slug'] = Str::slug($data['title']);
+
         //inserisco la funzione storage per caricare il file nella cartella storage/app/public
         $data['thumb'] = Storage::put('img/', $data['thumb']);
 
@@ -79,6 +80,7 @@ class ProjectController extends Controller
         $newProject->fill($data);
         $newProject->save();
 
+        //ritorno all'index
         return redirect()->route('admin.projects.index')->with('message', "Project $newProject->title has been created!")->with('alert-type', 'success');
     }
 
@@ -89,10 +91,11 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Project $project)
-    {
+    {   
         //creo due metodi per andare avanti e indietro nei progetti in ordine di data
         $nextProject = Project::where('creation_date', '>', $project->creation_date)->orderBy('creation_date')->first();
         $prevProject = Project::where('creation_date', '<', $project->creation_date)->orderBy('creation_date', 'DESC')->first();
+
         return view('admin.projects.show', compact('project', 'nextProject', 'prevProject'));
     }
 
@@ -104,7 +107,6 @@ class ProjectController extends Controller
      */
     public function edit(Project $project) //Uso la dependency injection al posto di passare l'id e fare find or fail
     {
-
         return view('admin.projects.edit', compact('project'));
     }
 
@@ -118,7 +120,7 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project) //Uso la dependency injection
     {
         //richiamare la validation con i metodi creati
-         
+        
         $newRules = $this->rules;
         $newRules['title'] = ['required', 'min:2', 'max:200', Rule::unique('projects')->ignore($project->id)];
         
@@ -134,10 +136,19 @@ class ProjectController extends Controller
             $data['thumb'] = Storage::put('img/', $data['thumb']);
         }
 
+        //controllo i valori della checkbox
+        if (!isset($request->completed)){
+            $data['completed'] = false;
+        }          
+            else {
+                $data['completed'] = true;
+            }   
+        //dump($data); 
+
         //aggiorno i dati
          $project->update($data);
 
-        //ritorno sulla pagina dello show
+        //ritorno sulla show
         return redirect()->route('admin.projects.show', compact('project'))->with('message', "$project->title has been edited")->with('alert-type', 'success');
     }
 
@@ -150,11 +161,13 @@ class ProjectController extends Controller
     public function destroy(Project $project) //Uso la dependency injection
     {
         $project->delete();
+
         //mi assicuro di cancellare il file dallo storage
         if (!$project->isImageAUrl()) {
             Storage::delete($project->thumb);
         }
 
+        //ritorno alla index
         return redirect()->route('admin.projects.index')->with('message', "$project->title has been trashed")->with('alert-type', 'danger');
 
     }
@@ -163,6 +176,8 @@ class ProjectController extends Controller
     public function restore($id)
     {
         Project::where('id', $id)->withTrashed()->restore();
+
+        //ritorno alla index
         return redirect()->route('admin.projects.index')->with('message', "Project has been restored")->with('alert-type', 'success');
     }
 
@@ -178,6 +193,8 @@ class ProjectController extends Controller
     public function forceDelete($id)
     {
         Project::where('id', $id)->withTrashed()->forceDelete();
+
+        //ritorno alla index
         return redirect()->route('admin.projects.index')->with('message', "Project has been permamently deleted")->with('alert-type', 'success');
     }
 }

@@ -8,7 +8,6 @@
                 {{ session('message')}}
         </div>
     @endif
-
     <div class="card text-center">
         <div class="card-header text-light fs-5">
             Author: <span class="fw-bold">{{ Auth::user()->name }} </span>

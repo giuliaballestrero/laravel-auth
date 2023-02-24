@@ -63,9 +63,9 @@
                 </div>
             @enderror  
             </div>
-
-            <div class="mb-3 form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" role="switch" value="1" {{old('completed', $project->completed)}} name="completed" id="completed">
+            
+            <div class="mb-3">
+                <input class="form-check-input" type="checkbox" value="1" {{ old('completed', $project->completed) ? 'checked' : '' }} name="completed" id="completed">
                 <label class="form-check-label" for="completed">Completed</label>
             </div>
         </div>

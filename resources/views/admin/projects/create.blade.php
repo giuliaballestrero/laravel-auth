@@ -66,7 +66,7 @@
             </div>
 
             <div class="mb-3">
-                <input class="form-check-input" type="checkbox" value="1" {{old('completed')}} name="completed" id="completed">
+                <input class="form-check-input" type="checkbox" value="1" {{ old('completed') ? 'checked' : '' }} name="completed" id="completed">
                 <label class="form-check-label" for="completed">Completed</label>
             </div>
         </div>
