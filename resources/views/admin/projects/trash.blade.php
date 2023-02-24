@@ -54,7 +54,9 @@
     </table>
 
    {{-- inserisco la pagination --}}
-
+    <div class="py-5">
+     {{ $projects->links() }}
+    </div>
   
 </div>
 @endsection

@@ -7,7 +7,7 @@
         Create a new post from <span class="fw-semibold">{{ Auth::user()->name }} </span>
     </h5>
 
-    <form action="{{ route('admin.projects.store') }}" method="POST" class="py-5">
+    <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data" class="py-5">
         @csrf
 
         <div class="card">
@@ -36,8 +36,8 @@
             </div>
 
             <div class="form-outline w-25 mb-3">
-                <label for="Thumb" class="form-label @error('thumb') is-invalid @enderror">Thumb</label>
-                <input type="text" class="form-control" id="thumb" placeholder="Insert path" name="thumb" value="{{old('thumb')}}">
+                <label for="Thumb" class="form-label @error('thumb') is-invalid @enderror">Select image:</label>
+                <input type="file" class="form-control" id="thumb" placeholder="Insert path" name="thumb" value="{{old('thumb')}}">
                 @error('thumb')
                 <div class="invalid-feedback px-2">
                     <i class="fa-solid fa-circle-exclamation pe-1"></i>{{ $message }}

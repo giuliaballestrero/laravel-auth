@@ -39,12 +39,23 @@ main {
             font-weight: bold;
             text-decoration: none;
         }
+
     }
 
     table {
         background-color: #aba9ee61;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         border-radius: 20px 20px;
+
+        .btn {
+            background-color: #9aae929a !important;
+            border: none !important;
+        }
+    
+        .fa-solid,
+        .fa-regular {
+            color: black;
+        }
     }
 
     .page-link {

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -71,6 +72,9 @@ class ProjectController extends Controller
         //$data = $request->all();
         $data = $request->validate($this->rules, $this->messages);
         $data['slug'] = Str::slug($data['title']);
+        //inserisco la funzione storage per caricare il file nella cartella storage/app/public
+        $data['thumb'] = Storage::put('img/', $data['thumb']);
+
         $newProject = new Project();
         $newProject->fill($data);
         $newProject->save();
@@ -149,7 +153,7 @@ class ProjectController extends Controller
     public function trashed()
     {
         //$projects = Project::paginate(10);
-        $projects = Project::onlyTrashed()->get();
+        $projects = Project::paginate(10)->onlyTrashed()->get();
         return view('admin.projects.trash', compact('projects'));
     }
 
