@@ -23,5 +23,10 @@ class Project extends Model
         return 'slug';
     }
 
+    //uso una funzione per stabilire se l'immagine è un url o un file
+    public function isImageAUrl(){
+        return filter_var($this->thumb, FILTER_VALIDATE_URL);
+    }
+
 }
 

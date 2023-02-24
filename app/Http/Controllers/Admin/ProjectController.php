@@ -125,6 +125,16 @@ class ProjectController extends Controller
         $data = $request->validate($newRules, $this->messages);
         $project->update($data);
 
+        //controllo se l'immagine è una url o è un file locale
+        if ($request->hasFile('thumb')){
+
+            if (!$project->isImageAUrl()){
+                Storage::delete($project->thumb);
+            }
+
+            $data['thumb'] =  Storage::put('imgs/', $data['thumb']);
+        }
+
         //ritorno sulla pagina dello show
         return redirect()->route('admin.projects.show', compact('project'))->with('message', "$project->title has been edited")->with('alert-type', 'success');
     }
@@ -138,6 +148,7 @@ class ProjectController extends Controller
     public function destroy(Project $project) //Uso la dependency injection
     {
         $project->delete();
+
         return redirect()->route('admin.projects.index')->with('message', "$project->title has been trashed")->with('alert-type', 'danger');
 
     }
@@ -153,7 +164,7 @@ class ProjectController extends Controller
     public function trashed()
     {
         //$projects = Project::paginate(10);
-        $projects = Project::paginate(10)->onlyTrashed()->get();
+        $projects = Project::onlyTrashed()->get();
         return view('admin.projects.trash', compact('projects'));
     }
 

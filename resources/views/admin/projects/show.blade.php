@@ -29,7 +29,14 @@
             <h2 class="card-title fw-bold p-3">
                 {{ $project->title }}
             </h2>
-            <img src="{{asset('storage/' . $project->thumb)}}" class="card-img-top" alt="{{$project->title}}">
+
+            @if ( $project->isImageAUrl())
+            <img src="{{$project->thumb}}" class="card-img-top img-fluid" alt="{{$project->title}}">
+            @else
+            <img src="{{asset('storage/' . $project->thumb)}}" class="card-img-top img-fluid" alt="{{$project->title}}">
+            @endif
+
+
             <p class="card-text mb-4">
                 {{ $project->description }}
             </p>

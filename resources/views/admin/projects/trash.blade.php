@@ -34,7 +34,7 @@
                                 </button>
                             </form>       
 
-                            <form class="delete double-confirm" action="{{route('projects.force-delete', $project->slug)}}" method="POST">
+                            <form class="delete double-confirm" action="{{route('projects.force-delete', $project->id)}}" method="POST">
                                 @csrf
                                 {{--utilizzo il medodo delete per eliminare definitivamente il progetto--}}
                                 @method('DELETE')
@@ -54,9 +54,6 @@
     </table>
 
    {{-- inserisco la pagination --}}
-    <div class="py-5">
-     {{ $projects->links() }}
-    </div>
   
 </div>
 @endsection

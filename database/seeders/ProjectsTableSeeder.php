@@ -22,7 +22,7 @@ class ProjectsTableSeeder extends Seeder
             $newProject->title = $faker->unique()->realTextBetween(5, 30);
             $newProject->slug = Str::slug($newProject->title);
             $newProject->description = $faker->realText(100);
-            $newProject->thumb = $faker->image();
+            $newProject->thumb = $faker->imageUrl();
             $newProject->creation_date = $faker->dateTimeThisYear();
             $newProject->type = $faker->realTextBetween(5,10);
             $newProject->completed = $faker->randomElement([true, false]);
