@@ -47,7 +47,7 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $projects = Project::paginate(10);
+        $projects = Project::orderBy('creation_date', 'DESC')->paginate(10);
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -126,17 +126,17 @@ class ProjectController extends Controller
        
         //controllo se l'immagine è una url o è un file locale
         if ($request->hasFile('thumb')){
-
             if (!$project->isImageAUrl()){
                 Storage::delete($project->thumb);
             }
 
+            //inserisco la funzione storage per caricare il file nella cartella storage/app/public
             $data['thumb'] = Storage::put('img/', $data['thumb']);
         }
 
         //aggiorno i dati
          $project->update($data);
-         
+
         //ritorno sulla pagina dello show
         return redirect()->route('admin.projects.show', compact('project'))->with('message', "$project->title has been edited")->with('alert-type', 'success');
     }

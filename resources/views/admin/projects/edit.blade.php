@@ -4,7 +4,7 @@
 @section('content')
 <div class="container py-5">
 
-    <form action="{{ route('admin.projects.update', compact('project')) }}" method="POST" class="py-5">
+    <form action="{{ route('admin.projects.update', compact('project')) }}" method="POST" enctype="multipart/form-data" class="py-5">
         @csrf
         {{--Inserisco il metodo PUT per la rotta update // vedere rotte con route:list--}}
         @method('PUT')
