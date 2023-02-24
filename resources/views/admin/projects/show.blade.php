@@ -37,7 +37,7 @@
             @endif
 
 
-            <p class="card-text mb-4">
+            <p class="card-textpt-4 pt-4 mb-4">
                 {{ $project->description }}
             </p>
             <p class="fw-bold">

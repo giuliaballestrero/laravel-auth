@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Project;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
@@ -123,8 +123,7 @@ class ProjectController extends Controller
         $newRules['title'] = ['required', 'min:2', 'max:200', Rule::unique('projects')->ignore($project->id)];
         
         $data = $request->validate($newRules, $this->messages);
-        $project->update($data);
-
+       
         //controllo se l'immagine è una url o è un file locale
         if ($request->hasFile('thumb')){
 
@@ -132,9 +131,12 @@ class ProjectController extends Controller
                 Storage::delete($project->thumb);
             }
 
-            $data['thumb'] =  Storage::put('imgs/', $data['thumb']);
+            $data['thumb'] = Storage::put('img/', $data['thumb']);
         }
 
+        //aggiorno i dati
+         $project->update($data);
+         
         //ritorno sulla pagina dello show
         return redirect()->route('admin.projects.show', compact('project'))->with('message', "$project->title has been edited")->with('alert-type', 'success');
     }
@@ -148,6 +150,10 @@ class ProjectController extends Controller
     public function destroy(Project $project) //Uso la dependency injection
     {
         $project->delete();
+        //mi assicuro di cancellare il file dallo storage
+        if (!$project->isImageAUrl()) {
+            Storage::delete($project->thumb);
+        }
 
         return redirect()->route('admin.projects.index')->with('message', "$project->title has been trashed")->with('alert-type', 'danger');
 

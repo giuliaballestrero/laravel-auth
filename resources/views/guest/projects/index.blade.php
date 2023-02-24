@@ -13,8 +13,14 @@
                 <h2 class="card-title fw-bold p-3">
                     {{ $project->title }}
                 </h2>
-                <img src="http:/{{$project->thumb}}" class="card-img-top" alt="{{$project->title}}">
-                <p class="card-text mb-4">
+
+                @if ( $project->isImageAUrl())
+                <img src="{{$project->thumb}}" class="img-thumb" alt="{{$project->title}}">
+                @else
+                <img src="{{asset('storage/' . $project->thumb)}}" class="card-img-top" alt="{{$project->title}}">
+                @endif
+
+                <p class="card-text pt-4 mb-4">
                     {{ $project->description }}
                 </p>
                 <p class="fw-bold">
