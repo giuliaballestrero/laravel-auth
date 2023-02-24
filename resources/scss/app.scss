@@ -35,9 +35,19 @@ main {
 
         .next-prev {
             color: #aba9ee;
+        }
+
+        .next-prev,
+        .next-prev-disabled {
             font-size: 1.2rem;
             font-weight: bold;
             text-decoration: none;
+        }
+
+        .next-prev-disabled {
+            color: rgba(128, 128, 128, 0.532);
+            pointer-events: none;
+
         }
 
     }

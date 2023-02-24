@@ -15,8 +15,16 @@
         </div>
         <div class="card-body p-3 m-3">
             <div class="d-flex justify-content-between">
-                <a class="next-prev" href=""><i class="fa-solid fa-chevron-left me-1"></i>Prev</a>
-                <a class="next-prev" href="">Next<i class="fa-solid fa-chevron-right ms-1"></i></a>
+                @if (@isset($prevProject))
+                    <a class="next-prev" href="{{route('admin.projects.show', $prevProject->slug)}}"><i class="fa-solid fa-chevron-left me-1"></i>Prev</a>
+                @else 
+                    <a class="next-prev-disabled" href=""><i class="fa-solid fa-chevron-left me-1"></i>Prev</a>
+                @endif
+                @if (@isset($nextProject))
+                  <a class="next-prev" href="{{route('admin.projects.show', $nextProject->slug)}}">Next<i class="fa-solid fa-chevron-right ms-1"></i></a>  
+                @else 
+                    <a class="next-prev-disabled" href="">Next<i class="fa-solid fa-chevron-right ms-1"></i></a>
+                @endif
             </div>
             <h2 class="card-title fw-bold p-3">
                 {{ $project->title }}
