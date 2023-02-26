@@ -20,14 +20,14 @@ deleteBtns.forEach((formDelete) => {
     event.preventDefault();
     var doubleconfirm = event.target.classList.contains('double-confirm');
     Swal.fire({
-      title: 'Are you sure ?',
-      text: "Please confirm your request !",
-      icon: 'warning',
+      title: 'Are you sure?',
+      text: "Please confirm your request",
+      icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#aba9ee',
+      cancelButtonColor: '#9aae929a',
       cancelButtonText: 'Cancel',
-      confirmButtonText: 'Yes, confirm !'
+      confirmButtonText: 'Yes, confirm'
     }).then((result) => {
       if (result.value) {
 
@@ -36,17 +36,19 @@ deleteBtns.forEach((formDelete) => {
 
           Swal.fire({
             title: 'Confirm request',
-            html: "Please type <b>CONFIRM</b>",
+            html: "Please type <b>DELETE</b>",
             input: 'text',
             type: 'warning',
-            inputPlaceholder: 'CONFIRM',
+            inputPlaceholder: 'DELETE',
             showCancelButton: true,
+            confirmButtonColor: '#aba9ee',
+            cancelButtonColor: '#9aae929a',
             confirmButtonText: 'Confirm',
             cancelButtonText: 'Cancel',
             showLoaderOnConfirm: true,
             allowOutsideClick: () => !Swal.isLoading(),
             preConfirm: (txt) => {
-              return (txt.toUpperCase() == "CONFIRM");
+              return (txt.toUpperCase() == "DELETE");
             },
 
           }).then((result) => {
